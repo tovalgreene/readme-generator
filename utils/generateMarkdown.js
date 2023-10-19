@@ -1,6 +1,6 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
-function renderLicenseBadge(license) { 
+function renderLicenseBadge(license) {
   if (license) {
     switch (license) {
       case 'MIT':
@@ -9,7 +9,7 @@ function renderLicenseBadge(license) {
         return '[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)';
       default:
         return '';
-      }
+    }
   }
   return '';
 }
@@ -24,10 +24,10 @@ function renderLicenseLink(license) {
       case 'Apache 2.0':
         return 'https://opensource.org/licenses/Apache-2.0';
       default:
-        return ''; 
+        return '';
     }
   }
-  return ''; 
+  return '';
 }
 
 // TODO: Create a function that returns the license section of README
@@ -66,17 +66,17 @@ function generateMarkdown(data) {
   ${licenseSection}
 
   ## Installation
-      ${data.installation}
 
-  
+  ${data.installation}
+
   ## Usage
   
   ${data.usage}
 
   ## Credits
+
   ${data.credits}
 
-  
   ## License
   
   ${data.description}
@@ -91,12 +91,11 @@ function generateMarkdown(data) {
 
   ## How to Contribute
   
-    ${data.contribute}
+  ${data.contribute}
 
   ## Tests
 
   ${data.tests}
-
 `;
 }
 
