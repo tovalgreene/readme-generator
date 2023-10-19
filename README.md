@@ -5,7 +5,7 @@
   The README Generator is a command-line application that generates high-quality README files for your GitHub repositories. It streamlines the process of creating README files by asking you a series of questions about your project and automatically generating a well-structured README.md file based on your responses.
   
   Creating a comprehensive README is essential for maintaining organized and informative project documentation. With the README Generator, you can focus more on your project's code and functionality while ensuring your README is professional and easy to understand.
-  
+
   ## Table of Contents 
   - [Installation](#installation)
   - [Usage](#usage)
@@ -34,11 +34,11 @@ This project is licensed under the [MIT License]() license.
 
   ## License
   
-  undefined
+  MIT License.
 
   ## Badges
   
-  
+  No badges.
 
   ## Features
   
