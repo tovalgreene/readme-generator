@@ -1,5 +1,3 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
 function renderLicenseBadge(license) {
   if (license) {
     switch (license) {
@@ -14,8 +12,6 @@ function renderLicenseBadge(license) {
   return '';
 }
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
 function renderLicenseLink(license) {
   if (license) {
     switch (license) {
@@ -30,72 +26,61 @@ function renderLicenseLink(license) {
   return '';
 }
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
-function renderLicenseSection(license) {
-  if (license) {
-    return `## License
-
-This project is licensed under the [${license}](${renderLicenseLink(license)}) license.`;
-  }
-  return '';
-}
-
-// TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-
   const licenseBadge = renderLicenseBadge(data.license);
   const licenseSection = renderLicenseSection(data.license);
 
   return `# ${data.title}
 
-  ## Description
+## Description
 
-    ${data.description}
+${data.description}
 
-  ## Table of Contents 
-  - [Installation](#installation)
-  - [Usage](#usage)
-  - [Credits](#credits)
-  - [License](#license)
-  - [Badges] (#badges)
-  - [Features] (#features)
-  - [How to Contribute] (#howtocontribute)
-  - [Tests] (#tests)
-  
-  ${licenseSection}
+## Table of Contents
+- [Installation](#installation)
+- [Usage](#usage)
+- [Credits](#credits)
+- [License](#license)
+- [Badges](#badges)
+- [Features](#features)
+- [How to Contribute](#how-to-contribute)
+- [Tests](#tests)
 
-  ## Installation
+${licenseSection}
 
-  ${data.installation}
+## Installation
 
-  ## Usage
-  
-  ${data.usage}
+${data.installation}
 
-  ## Credits
+## Usage
 
-  ${data.credits}
+${data.usage}
 
-  ## License
-  
-  ${data.description}
+## Credits
 
-  ## Badges
-  
-  ${licenseBadge}
+${data.credits}
 
-  ## Features
-  
-  ${data.features}
+## License
 
-  ## How to Contribute
-  
-  ${data.contribute}
+${licenseBadge}
 
-  ## Tests
+This project is licensed under the [${data.license}](${renderLicenseLink(data.license)}) license.
 
-  ${data.tests}
+## Badges
+
+${licenseBadge}
+
+## Features
+
+${data.features}
+
+## How to Contribute
+
+${data.contribute}
+
+## Tests
+
+${data.tests}
 `;
 }
 
