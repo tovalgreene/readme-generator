@@ -1,4 +1,3 @@
-// Consolidating the logic for rendering license badge and link into a single object
 const licenses = {
   'MIT': {
     badge: '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)',
@@ -10,21 +9,31 @@ const licenses = {
   }
 };
 
-// Simplified function to render license badge
 function renderLicenseBadge(license) {
   return license && licenses[license] ? licenses[license].badge : '';
 }
 
-// Simplified function to render license link
 function renderLicenseLink(license) {
   return license && licenses[license] ? licenses[license].link : '';
 }
 
-// Function to generate markdown
 function generateMarkdown(data) {
   const licenseBadge = renderLicenseBadge(data.license);
+  
+  // Dynamically generating the table of contents
+  const tableOfContents = [
+    data.installation && '- [Installation](#installation)',
+    data.usage && '- [Usage](#usage)',
+    data.credits && '- [Credits](#credits)',
+    data.license && '- [License](#license)',
+    data.badges.length && '- [Badges](#badges)',
+    data.features && '- [Features](#features)',
+    data.contribute && '- [How to Contribute](#how-to-contribute)',
+    data.tests && '- [Tests](#tests)',
+    '- [Contact](#contact)'
+  ].filter(Boolean).join('\n');
 
-  // Template literal for markdown content
+  // Markdown content with dynamic table of contents and other sections
   return `# ${data.title}
 
 ## Description
@@ -32,14 +41,19 @@ function generateMarkdown(data) {
 ${data.description}
 
 ## Table of Contents
-- [Installation](#installation)
-- [Usage](#usage)
-- [Credits](#credits)
-- [License](#license)
-- [Badges](#badges)
-- [Features](#features)
-- [How to Contribute](#how-to-contribute)
-- [Tests](#tests)
+${tableOfContents}
+
+## Installation
+
+${data.installation || ''}
+
+## Usage
+
+${data.usage || ''}
+
+## Credits
+
+${data.credits || ''}
 
 ## License
 
@@ -49,31 +63,26 @@ This project is licensed under the [${data.license}](${renderLicenseLink(data.li
 
 ## Badges
 
-${licenseBadge}
-
-## Installation
-
-${data.installation}
-
-## Usage
-
-${data.usage}
-
-## Credits
-
-${data.credits}
+${data.badges.join(' ')}
 
 ## Features
 
-${data.features}
+${data.features || ''}
 
 ## How to Contribute
 
-${data.contribute}
+${data.contribute || ''}
 
 ## Tests
 
-${data.tests}
+${data.tests || ''}
+
+---
+
+## Contact Information
+
+- Email: ${data.email || ''}
+- GitHub: [${data.github || ''}](https://github.com/${data.github || ''})
 `;
 }
 
