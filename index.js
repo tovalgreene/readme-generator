@@ -49,12 +49,28 @@ const questions = [
     name: 'tests',
     message: 'Please insert necessary tests for this project.',
   },
+  {
+    type: 'checkbox',
+    name: 'badges',
+    message: 'Select badges for your project:',
+    choices: ['MIT', 'Apache 2.0', 'GPL 3.0', 'BSD 3', 'None'],
+  },
+  {
+    type: 'input',
+    name: 'email',
+    message: 'Enter your email address:',
+  },
+  {
+    type: 'input',
+    name: 'github',
+    message: 'Enter your GitHub username:',
+  },
 ];
 
 function writeToFile(fileName, data) {
   fs.promises.writeFile(fileName, data)
     .then(() => console.log('README.md successfully created!'))
-    .catch(console.error); 
+    .catch(console.error);
 }
 
 async function init() {
@@ -66,5 +82,69 @@ async function init() {
     console.error(error);
   }
 }
+
+function generateMarkdown(data) {
+  const tableOfContents = `
+## Table of Contents
+${data.installation ? '- [Installation](#installation)' : ''}
+${data.usage ? '- [Usage](#usage)' : ''}
+${data.credits ? '- [Credits](#credits)' : ''}
+- [License](#license)
+${data.badges.length ? '- [Badges](#badges)' : ''}
+${data.features ? '- [Features](#features)' : ''}
+${data.contribute ? '- [How to Contribute](#how-to-contribute)' : ''}
+${data.tests ? '- [Tests](#tests)' : ''}
+`;
+
+  return `# ${data.title}
+
+## Description
+
+${data.description}
+
+${tableOfContents}
+
+## Installation
+
+${data.installation}
+
+## Usage
+
+${data.usage}
+
+## Credits
+
+${data.credits}
+
+## License
+
+${data.license ? `This project is licensed under the ${data.license} license.` : ''}
+
+## Badges
+
+${data.badges.join(' ')}
+
+## Features
+
+${data.features}
+
+## How to Contribute
+
+${data.contribute}
+
+## Tests
+
+${data.tests}
+
+---
+
+## Contact Information
+
+- Email: ${data.email}
+- GitHub: [${data.github}](https://github.com/${data.github})
+`;
+}
+
+module.exports = generateMarkdown;
 
 init();
