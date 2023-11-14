@@ -52,20 +52,19 @@ const questions = [
 ];
 
 function writeToFile(fileName, data) {
-  fs.writeFile(fileName, data, (err) => {
-    if (err) {
-      console.error(err);
-    } else {
-      console.log('README.md successfully created!');
-    }
-  });
+  fs.promises.writeFile(fileName, data)
+    .then(() => console.log('README.md successfully created!'))
+    .catch(console.error); 
 }
 
-function init() {
-  inquirer.prompt(questions).then((answers) => {
+async function init() {
+  try {
+    const answers = await inquirer.prompt(questions);
     const readmeContent = generateMarkdown(answers);
-    writeToFile('README.md', readmeContent);
-  });
+    await writeToFile('README.md', readmeContent);
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 init();
